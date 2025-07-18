@@ -161,17 +161,13 @@
             body: formData,
           });
 
-          const result = await response.json();
-
-          if (result.status === "success") {
+          const text = await response.text();
+          
+          if (text.includes("Success")) {
             document.getElementById("confirmation-message").style.display = "block";
             document.getElementById("inquiry-form").reset();
           } else {
             alert("⚠️ Something went wrong. Please try again.");
-          }
-        } catch (error) {
-          console.error("Form submission error:", error);
-          alert("❌ Submission failed. Please try again later.");
         }
       });
     </script>
