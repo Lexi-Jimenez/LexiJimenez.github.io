@@ -1,0 +1,43 @@
+function doPost(e) {
+  try {
+    const sheet = SpreadsheetApp.openById('YOUR_SPREADSHEET_ID').getSheetByName('SHEET_TAB_NAME');
+
+    // Extract form values from request parameters
+    const firstName = e.parameter.firstName;
+    const lastName = e.parameter.lastName;
+    const phone = e.parameter.phone;
+    const email = e.parameter.email;
+    const message = e.parameter.message;
+    const timestamp = new Date();
+
+    // Append form data to the sheet in correct order
+    // Field Validation
+    if (!firstName || !lastName || !email || !message) {
+  throw new Error("Missing required fields.");
+}
+    sheet.appendRow([firstName, lastName, phone, email, message, timestamp]);
+
+    // Optional: Send yourself an email copy
+    const subject = `New Inquiry from ${firstName} ${lastName}`;
+    const body = `
+New inquiry received:
+
+Name: ${firstName} ${lastName}
+Phone: ${phone}
+Email: ${email}
+
+Message:
+${message}
+    `;
+    MailApp.sendEmail({
+      to: "YOUR_EMAIL@GMAIL.COM",
+      subject: subject,
+      body: body
+    });
+
+    return ContentService.createTextOutput("Success").setMimeType(ContentService.MimeType.TEXT);
+  } catch (error) {
+    console.error("Error in doPost:", error);
+    return ContentService.createTextOutput("Error: " + error.message).setMimeType(ContentService.MimeType.TEXT);
+  }
+}
