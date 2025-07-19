@@ -4687,3 +4687,17 @@ input, select, textarea {
 		}
 
 	}
+	/* === Phone Input Fix === */
+	
+		input.form-phone {
+			border: 2px solid #dddddd !important;
+			background-color: transparent !important;
+			color: inherit !important;
+			height: 3rem !important;
+		}
+	
+		input.form-phone:focus {
+			border-color: #18bfef !important;
+			outline: none !important;
+			box-shadow: none !important;
+		}
