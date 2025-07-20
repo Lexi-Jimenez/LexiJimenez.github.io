@@ -4712,3 +4712,9 @@ input, select, textarea {
 		outline: none !important;
 		box-shadow: none !important;
 	}
+
+	.center-project {
+	  display: flex;
+	  justify-content: center;
+	  margin-top: 2rem;
+	}
