@@ -14,6 +14,7 @@
   <noscript>
     <link rel="stylesheet" href="assets/css/noscript.css" />
   </noscript>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body class="is-preload">
@@ -187,6 +188,14 @@
                 <textarea id="message" name="message" rows="4" required></textarea>
               </div>
             </div>
+          <!-- reCAPTCHA Widget -->
+            <div class="field">
+              <div class="g-recaptcha" data-sitekey="6LdYEY8rAAAAAHvFiLUwzV00VaQS_DU2pPj-8AEH"></div>
+            </div>
+
+            <!-- Hidden field to pass response -->
+            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" />
+
             <ul class="actions">
               <li><input type="submit" value="Send Inquiry" class="primary" /></li>
             </ul>
@@ -218,36 +227,49 @@
       <script src="assets/js/util.js"></script>
       <script src="assets/js/main.js"></script>
 
+
+
+<!-- Load reCAPTCHA API -->
+<script src="https://www.google.com/recaptcha/api.js?render=6LdYEY8rAAAAAHvFiLUwzV0OVaQS_DU2pPj-8AEH"></script>
+
       <!-- Contact Form JavaScript -->
       <script>
-        document.getElementById("inquiry-form").addEventListener("submit", async function (e) {
-          e.preventDefault();
+  document.getElementById("inquiry-form").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-          const formData = new FormData(e.target);
+    grecaptcha.ready(function () {
+      grecaptcha.execute("6LdYEY8rAAAAAHvFiLUwzV0OVaQS_DU2pPj-8AEH", { action: "submit" }).then(function (token) {
+        // Add the reCAPTCHA token to the hidden field
+        document.getElementById("g-recaptcha-response").value = token;
 
-          try {
-            const response = await fetch("https://script.google.com/macros/s/AKfycbzHzBVbfmNsT1n6Gexwps_C5vP4YtxvHcUQK9m3H01-yP7qOJF6SyucvJMWenX4Y90S/exec", {
-              method: "POST",
-              body: formData,
-            });
+        // Create the FormData object after the token is set
+        const formData = new FormData(document.getElementById("inquiry-form"));
 
-            const text = await response.text();
-
-            if (text.includes("Success")) {
-              document.getElementById("confirmation-message").style.display = "block";
-              document.getElementById("inquiry-form").reset();
-            } else {
-              alert("⚠️ Something went wrong. Please try again.");
-            }
-          } catch (error) {
-            alert("⚠️ Error submitting form. Please try again.");
-            console.error("Submission error:", error);
+        fetch("https://script.google.com/macros/s/AKfycbzHzBVbfmNsT1n6Gexwps_C5vP4YtxvHcUQK9m3H01-yP7qOJF6SyucvJMWenX4Y90S/exec", {
+          method: "POST",
+          body: formData,
+        })
+        .then(response => response.text())
+        .then(text => {
+          if (text.includes("Success")) {
+            document.getElementById("confirmation-message").style.display = "block";
+            document.getElementById("inquiry-form").reset();
+            grecaptcha.reset(); // Optional if using checkbox version
+          } else {
+            alert("⚠️ Something went wrong. Please try again.");
           }
+        })
+        .catch(error => {
+          console.error("Submission error:", error);
+          alert("⚠️ Error submitting form. Please try again.");
         });
-      </script>
-
+      });
+    });
+  });
+</script>
 
     </div>
+
 </body>
 
 </html>
