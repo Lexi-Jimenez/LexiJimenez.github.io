@@ -14,7 +14,6 @@
   <noscript>
     <link rel="stylesheet" href="assets/css/noscript.css" />
   </noscript>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body class="is-preload">
@@ -230,17 +229,13 @@
 
 
 <!-- Load reCAPTCHA API -->
-<script src="https://www.google.com/recaptcha/api.js?render=6LdYEY8rAAAAAHvFiLUwzV0OVaQS_DU2pPj-8AEH"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
       <!-- Contact Form JavaScript -->
       <script>
   document.getElementById("inquiry-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    grecaptcha.ready(function () {
-      grecaptcha.execute("6LdYEY8rAAAAAHvFiLUwzV0OVaQS_DU2pPj-8AEH", { action: "submit" }).then(function (token) {
-        // Add the reCAPTCHA token to the hidden field
-        document.getElementById("g-recaptcha-response").value = token;
 
         // Create the FormData object after the token is set
         const formData = new FormData(document.getElementById("inquiry-form"));
@@ -264,8 +259,6 @@
           alert("⚠️ Error submitting form. Please try again.");
         });
       });
-    });
-  });
 </script>
 
     </div>
