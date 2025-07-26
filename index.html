@@ -233,32 +233,40 @@
 
       <!-- Contact Form JavaScript -->
       <script>
-  document.getElementById("inquiry-form").addEventListener("submit", function (e) {
-    e.preventDefault();
+document.getElementById("inquiry-form").addEventListener("submit", function (e) {
+  e.preventDefault();
 
+  // Wait briefly to let reCAPTCHA finish
+  setTimeout(() => {
+    const recaptchaResponse = document.getElementById("g-recaptcha-response").value;
 
-        // Create the FormData object after the token is set
-        const formData = new FormData(document.getElementById("inquiry-form"));
+    if (!recaptchaResponse) {
+      alert("⚠️ Please complete the reCAPTCHA challenge before submitting.");
+      return;
+    }
 
-        fetch("https://script.google.com/macros/s/AKfycbzHzBVbfmNsT1n6Gexwps_C5vP4YtxvHcUQK9m3H01-yP7qOJF6SyucvJMWenX4Y90S/exec", {
-          method: "POST",
-          body: formData,
-        })
-        .then(response => response.text())
-        .then(text => {
-          if (text.includes("Success")) {
-            document.getElementById("confirmation-message").style.display = "block";
-            document.getElementById("inquiry-form").reset();
-            grecaptcha.reset(); // Optional if using checkbox version
-          } else {
-            alert("⚠️ Something went wrong. Please try again.");
-          }
-        })
-        .catch(error => {
-          console.error("Submission error:", error);
-          alert("⚠️ Error submitting form. Please try again.");
-        });
-      });
+    const formData = new FormData(document.getElementById("inquiry-form"));
+
+    fetch("https://script.google.com/macros/s/AKfycbzHzBVbfmNsT1n6Gexwps_C5vP4YtxvHcUQK9m3H01-yP7qOJF6SyucvJMWenX4Y90S/exec", {
+      method: "POST",
+      body: formData,
+    })
+    .then(response => response.text())
+    .then(text => {
+      if (text.includes("Success")) {
+        document.getElementById("confirmation-message").style.display = "block";
+        document.getElementById("inquiry-form").reset();
+        grecaptcha.reset(); // reset the checkbox
+      } else {
+        alert("⚠️ Something went wrong. Please try again.");
+      }
+    })
+    .catch(error => {
+      console.error("Submission error:", error);
+      alert("⚠️ Error submitting form. Please try again.");
+    });
+  }, 300); // short delay (300ms)
+});
 </script>
 
     </div>
