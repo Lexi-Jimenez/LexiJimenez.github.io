@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <!--
   Massively by HTML5 UP
@@ -187,17 +188,9 @@
                 <textarea id="message" name="message" rows="4" required></textarea>
               </div>
             </div>
-          <!-- reCAPTCHA Widget -->
-            <div class="field">
-              <div class="g-recaptcha" data-sitekey="6LdYEY8rAAAAAHvFiLUwzV00VaQS_DU2pPj-8AEH"></div>
-            </div>
-
-            <!-- Hidden field to pass response -->
-            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" />
-
-          <div class="actions" style="display: flex; justify-content: flex-start; padding: 0;">
-            <input type="submit" value="Send Inquiry" class="primary" />
-          </div>
+            <ul class="actions">
+              <li><input type="submit" value="Send Inquiry" class="primary" /></li>
+            </ul>
             <p id="confirmation-message" style="
 			display: none;
 			color: green;
@@ -226,52 +219,36 @@
       <script src="assets/js/util.js"></script>
       <script src="assets/js/main.js"></script>
 
-
-
-<!-- Load reCAPTCHA API -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
       <!-- Contact Form JavaScript -->
       <script>
-document.getElementById("inquiry-form").addEventListener("submit", function (e) {
-  e.preventDefault();
+        document.getElementById("inquiry-form").addEventListener("submit", async function (e) {
+          e.preventDefault();
 
-  // Wait briefly to let reCAPTCHA finish
-  setTimeout(() => {
-    const recaptchaResponse = document.getElementById("g-recaptcha-response").value;
+          const formData = new FormData(e.target);
 
-    if (!recaptchaResponse) {
-      alert("⚠️ Please complete the reCAPTCHA challenge before submitting.");
-      return;
-    }
+          try {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbzHzBVbfmNsT1n6Gexwps_C5vP4YtxvHcUQK9m3H01-yP7qOJF6SyucvJMWenX4Y90S/exec", {
+              method: "POST",
+              body: formData,
+            });
 
-    const formData = new FormData(document.getElementById("inquiry-form"));
+            const text = await response.text();
 
-    fetch("https://script.google.com/macros/s/AKfycbzHzBVbfmNsT1n6Gexwps_C5vP4YtxvHcUQK9m3H01-yP7qOJF6SyucvJMWenX4Y90S/exec", {
-      method: "POST",
-      body: formData,
-    })
-    .then(response => response.text())
-    .then(text => {
-      if (text.includes("Success")) {
-        document.getElementById("confirmation-message").style.display = "block";
-        document.getElementById("inquiry-form").reset();
-        grecaptcha.reset(); // reset the checkbox
-      } else {
-        alert("⚠️ Something went wrong. Please try again.");
-      }
-    })
-    .catch(error => {
-      console.error("Submission error:", error);
-      alert("⚠️ Error submitting form. Please try again.");
-    });
-  }, 300); // short delay (300ms)
-});
-</script>
+            if (text.includes("Success")) {
+              document.getElementById("confirmation-message").style.display = "block";
+              document.getElementById("inquiry-form").reset();
+            } else {
+              alert("⚠️ Something went wrong. Please try again.");
+            }
+          } catch (error) {
+            alert("⚠️ Error submitting form. Please try again.");
+            console.error("Submission error:", error);
+          }
+        });
+      </script>
 
 
     </div>
-
 </body>
 
 </html>
