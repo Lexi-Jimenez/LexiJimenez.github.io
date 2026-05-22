@@ -686,6 +686,15 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 4px 15px rgba(0, 174, 239, 0.3);
 }
 
+/* The Processing State */
+.submit-button:disabled {
+    background-color: var(--cool-gray); /* Dims the button */
+    color: var(--midnight-blue);
+    cursor: wait; /* Changes the mouse pointer to a loading spinner */
+    box-shadow: none;
+    transform: none; /* Stops it from bouncing if they try to click it again */
+}
+
 .form-header {
     margin-bottom: 40px; 
 }
