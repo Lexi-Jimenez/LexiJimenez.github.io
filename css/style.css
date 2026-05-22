@@ -1,0 +1,1310 @@
+/* --- BRAND STYLE GUIDE --- */
+:root {
+    /* Colors */
+    --electric-blue: #00AEEF;
+    --cyan-glow: #2ED3FF;
+    --deep-navy: #000610; /* <-- Updated to your exact picked color! */
+    --midnight-blue: #0D1B2A;
+    --cool-gray: #AAB4C3;
+    --soft-white: #F5F7FA;
+
+    /* Typography */
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* --- GLOBAL RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--deep-navy);
+    color: var(--cool-gray);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--soft-white);
+}
+
+/* --- NAVIGATION BAR --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: var(--deep-navy); /* Applies the solid #000610 color */
+}
+
+.logo-img {
+    height: 85px; /* We can adjust this later depending on your image */
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 45px; /* Increased from 30px to space them out more */
+}
+
+.nav-links a {
+    color: var(--soft-white);
+    text-decoration: none;
+    font-size: 1.4rem; /* Increased from 0.95rem for better readability */
+    font-weight: 500; /* Adding a slight boldness helps them match the mockup's weight */
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--cyan-glow); /* Turns cyan when you hover over it */
+}
+
+/* --- BUTTONS --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.15rem; /* <-- Add this new line right here! */
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #0050f7; /* <-- Updated to your exact color-picked blue! */
+    color: var(--soft-white);
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: var(--cyan-glow);
+    box-shadow: 0 0 15px rgba(46, 211, 255, 0.4); 
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 85vh; 
+    
+    /* Dropped the top padding to 25px! */
+    padding: 25px 5% 20px; 
+    
+    background-image: url('../Assets/Images/hero-bg.png');
+    background-size: cover;
+    background-position: bottom; 
+    background-repeat: no-repeat;
+}
+
+/* --- THE NUDGE TRICK --- */
+.hero > div {
+    /* A negative value pulls it UP towards the top of the screen */
+    transform: translateY(-80px); 
+}
+
+.hero-content {
+    width: 50%; /* Keeps the text constrained to the left side */
+    color: var(--soft-white);
+}
+
+.subtitle {
+    color: var(--cyan-glow);
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: 4.5rem; /* Big, bold headline */
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.highlight {
+    color: var(--electric-blue); /* Makes "Stronger" pop */
+}
+
+.description {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    max-width: 90%;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+/* Secondary Button Style */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--soft-white);
+    padding: 12px 24px;
+    border: 1px solid var(--cool-gray);
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    border-color: var(--cyan-glow);
+    color: var(--cyan-glow);
+}
+
+/* --- HERO GRAPHIC & ANIMATION --- */
+.hero-graphic {
+    width: 40%; /* Shrinks the container slightly so it doesn't take up the whole right side */
+    display: flex;
+    justify-content: flex-start; /* Pulls the image to the left edge of its container */
+    align-items: center;
+    margin-right: 27%; /* This is the magic buffer! It forces a gap on the right, pushing the logo inward */
+    margin-bottom: 200px; /* <-- This is the new line! It nudges the image up. */
+}
+
+.hero-graphic img {
+    width: 100%; /* Allows it to fill its new, properly positioned container */
+    max-width: 600px; /* Caps the maximum size to help control the blurriness for now */
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(46, 211, 255, 0.2)); 
+    animation: float 6s ease-in-out infinite; 
+}
+
+/* Keyframes dictate how the animation behaves over time */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); } 
+    100% { transform: translateY(0px); }
+}
+
+/* --- TRUST BADGES --- */
+.trust-badges {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    gap: 30px; 
+    /* The horizontal border-top and padding-top have been removed! */
+}
+
+
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Increased slightly to give the larger icons breathing room */
+    height: 80px; /* Increased the container height so the dividers stay even and tall */
+}
+
+/* --- CUSTOM VERTICAL DIVIDERS --- */
+
+/* 1. We remove the old border, but keep the padding and add an 'anchor' */
+.badge:not(:last-child) {
+    padding-right: 30px; 
+    position: relative; /* This acts as an anchor for our custom line */
+}
+
+/* 2. We draw the new custom line */
+.badge:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%); /* Perfectly centers the line vertically */
+    width: 1px; /* The thickness of the line */
+    height: 45px; /* <-- Tweak this number to make the line shorter or taller! */
+    background-color: var(--electric-blue); /* Keeps your custom neon blue */
+}
+
+/* --- INDIVIDUAL ICON SIZING --- */
+.badge img {
+    height: auto;
+    object-fit: contain;
+}
+
+/* Tweak these specific widths until they visually match on your screen */
+.badge-check {
+    width: 55px; /* Boosted to compensate for extra transparent padding */
+}
+
+.badge-chart {
+    width: 55px; /* Baseline size */
+}
+
+.badge-gear {
+    width: 55px; /* Slightly boosted if needed */
+}
+
+.badge span {
+    font-size: 0.95rem;
+    color: var(--soft-white);
+    line-height: 1.3;
+}
+
+/* --- SERVICES SECTION --- */
+.services-section {
+    padding: 20px 5% 20px; /* Changed the first number to 20px */
+    background-color: var(--deep-navy); 
+}
+
+.section-header {
+    text-align: left; 
+    margin-bottom: 50px;
+}
+
+.section-subtitle {
+    color: var(--cyan-glow);
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+/* This now applies to ALL section headers across your site! */
+.section-header h2 {
+    font-size: 2.5rem;
+    color: var(--soft-white);
+}
+
+/* The Grid Layout */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Magically creates 4 equal columns */
+    gap: 30px; /* Space between the cards */
+}
+
+/* The Individual Cards */
+.service-card {
+    background-color: transparent; 
+    border: 1px solid #0088c7; /* <-- Your custom resting blue! */
+    border-radius: 12px; 
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* The Hover Effect! */
+.service-card:hover {
+    border-color: var(--electric-blue);
+    transform: translateY(-5px); /* Gives the card a gentle lift upward */
+    box-shadow: 0 10px 30px rgba(0, 80, 247, 0.15); /* A faint blue glow underneath */
+}
+
+.service-icon {
+    height: 150px; /* You can adjust this up or down based on your icon exports */
+    width: auto;
+    margin-bottom: 25px;
+}
+
+.service-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    font-size: 1.05rem; /* Increased for better readability */
+    color: var(--soft-white); /* Swapped from --cool-gray to match the headers */
+    line-height: 1.6;
+}
+
+/* --- PROCESS SECTION --- */
+.process-section {
+    padding: 20px 5% 20px; /* Changed the first number to 20px */
+    background-color: var(--deep-navy); 
+}
+
+/* The Shaded Background Box */
+.process-container {
+    /* Updated to flow directly from top to bottom! */
+    background: linear-gradient(to bottom, var(--midnight-blue) 0%, var(--deep-navy) 100%);
+    border: 1px solid #0088c7; 
+    border-radius: 12px;
+    padding: 60px 50px;
+}
+
+.process-container .section-header {
+    margin-bottom: 60px; /* Gives space between the header and the steps */
+}
+
+/* Aligning the steps horizontally */
+.process-steps {
+    display: flex;
+    justify-content: space-between; /* This tells the browser to push equal space between every item */
+    align-items: flex-start;
+    width: 100%; /* Forces the invisible row to stretch edge-to-edge */
+    
+}
+
+/* Individual Step Styling */
+.step {
+    flex: 1; /* Makes every step take up equal space */
+    text-align: center;
+    padding: 0 15px;
+}
+
+.step img {
+    height: 100px; /* Increased by 25% to make the icons pop! */
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.step h4 {
+    font-size: 1.4rem; /* Increased by 25% (up from 1.1rem) */
+    color: var(--soft-white);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.step p {
+    font-size: 1.2rem; 
+    color: var(--soft-white); 
+    line-height: 1.6;
+    
+    /* Widened the box slightly to let that first step breathe! */
+    max-width: 260px; 
+    margin: 0 auto; 
+}
+
+/* The Connecting Arrows */
+.step-arrow {
+    font-size: 3.5rem; 
+    color: #0050f7; 
+    display: flex;
+    align-items: center;
+    margin-top: 35px; 
+    font-weight: 300; 
+    
+    /* The 75% horizontal stretch you added earlier! */
+    transform: scaleX(1.75); 
+    transform-origin: center; 
+}
+
+/* --- CALL TO ACTION SECTION --- */
+.cta-section {
+    padding: 20px 5% 20px; /* Dropped the bottom padding to 20px */
+    background-color: var(--deep-navy);
+}
+
+.cta-container {
+    /* Changed 'to right' to 'to bottom' */
+    background: linear-gradient(to bottom, var(--midnight-blue) 0%, var(--deep-navy) 100%);
+    border: 1px solid #0088c7; 
+    border-radius: 12px;
+    
+    /* The invisible bumpers! */
+    padding: 50px 150px; /* Increased the left/right padding from 60px to 150px */
+    
+    display: flex;
+    align-items: center;
+    
+    /* Pushes them apart, but stops them at the 150px padding line */
+    justify-content: space-between; 
+    
+    /* Make sure to DELETE the gap: 150px; line you added in the last step! */
+}
+
+/* Grouping the left icon and the text */
+.cta-left {
+    display: flex;
+    align-items: center;
+    gap: 45px; /* Increased to push the text further away from the icon */
+}
+
+.cta-main-icon {
+    height: 85px; /* Adjust this based on how you export your icon */
+    width: auto;
+}
+
+.cta-text h2 {
+    font-size: 2.4rem; /* Increased significantly for maximum impact */
+    color: var(--soft-white);
+    margin-bottom: 8px;
+}
+
+.cta-text p {
+    font-size: 1.25rem; /* Increased for better readability */
+    color: var(--soft-white); /* Swapped from gray to white! */
+}
+
+/* The Bright Blue Button */
+.cta-button {
+    background-color: #0050f7; 
+    color: var(--soft-white);
+    
+    /* The magic button stretcher! */
+    padding: 18px 100px; /* Increased top/bottom slightly, and sides significantly */
+    font-size: 1.25rem; /* Made the button text slightly larger too */
+    
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--electric-blue); /* Lights up on hover! */
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 80, 247, 0.2);
+}
+
+.btn-icon {
+    height: 20px;
+    width: auto;
+}
+
+/* --- FOOTER SECTION --- */
+.site-footer {
+    background-color: var(--deep-navy); 
+    padding: 20px 5% 20px; /* Dropped the top padding to 20px */
+}
+
+.footer-container {
+    display: grid;
+    
+    /* The Fix! We added a 2fr "ghost column" at the end to push things left */
+    grid-template-columns: 2.5fr 1fr 1fr 2fr; 
+    
+    gap: 50px; 
+    padding-bottom: 40px;
+}
+
+/* Massively increased the logo size to match the mockup */
+.footer-logo {
+    max-width: 450px; /* Massively increased to match your mockup vision */
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.footer-brand p {
+    color: var(--soft-white);
+    font-size: 1.15rem; /* Increased for much better readability */
+    max-width: 420px; /* Widened so the text flows beautifully under the large logo */
+    line-height: 1.6;
+}
+
+.footer-links h4, .footer-contact-info h4, .footer-socials h4 {
+    color: var(--soft-white);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-family: var(--font-heading);
+}
+
+.footer-links ul, .footer-contact-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li, .footer-contact-info li {
+    margin-bottom: 12px;
+}
+
+/* Aligns your small blue icons perfectly with the contact text next to them */
+.footer-contact-info li {
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+    color: var(--soft-white);
+    font-size: 0.95rem;
+}
+
+.footer-icon {
+    width: 18px; /* Keeps the contact icons tiny */
+    height: auto;
+}
+
+.footer-links a, .footer-contact-info a {
+    color: var(--soft-white);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover, .footer-contact-info a:hover {
+    color: #00AEEF; 
+}
+
+/* Groups your social media circles */
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+
+/* Optional: Add a little extra space if they are touching */
+.social-icons a {
+    margin-right: 1px; 
+}
+
+
+.social-icon-linkedin {
+    width: 50px !important; /* Use !important to override any hidden conflicts */
+    height: auto !important;
+    transition: transform 0.3s ease;
+}
+
+.social-icon-instagram {
+    width:53px !important; 
+    height: auto !important;
+    transition: transform 0.3s ease;
+}
+
+.social-icon-linkedin:hover, 
+.social-icon-instagram:hover {
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.footer-bottom p {
+    color: var(--cool-gray);
+    font-size: 0.85rem;
+}
+
+/* --- FOOTER DECORATION --- */
+.site-footer {
+    position: relative; /* This tells the graphic: "You are positioned relative to me!" */
+    overflow: hidden;   /* Ensures the graphic doesn't spill outside the footer edges */
+}
+
+.footer-corner-graphic {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    
+    /* Increased from 350px to cover more space */
+    width: 800px; 
+    
+    height: auto;
+    pointer-events: none;
+    opacity: 0.7; /* Slightly more transparent so it doesn't distract from links */
+    z-index: 0;   /* Ensures it stays behind your text links */
+}
+
+
+/* --- CONTACT PAGE --- */
+
+/* --- HERO SECTION --- */
+.contact-hero-img {
+    width: 400px !important; /* Adjust this value (e.g., 300px, 400px) until it looks perfect */
+    height: auto;
+    /* Optional: keep the float animation if you like it */
+    animation: float 6s ease-in-out infinite; 
+    position: relative;
+    right: -100px
+}
+
+/* --- CONTACT FORM SECTION --- */
+.contact-form-section {
+    padding: 0 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: auto;
+}
+
+.form-container {
+    background: var(--midnight-blue);
+    padding: 60px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 900px;
+    border: 1px solid #1a2a3a;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 25px; /* Adds space between each input group */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px; /* This is the key: tighter spacing for the label */
+    color: var(--soft-white);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    background: var(--deep-navy);
+    border: 1px solid #1a2a3a;
+    border-radius: 6px;
+    color: var(--soft-white);
+    display: block;
+    font-family: inherit;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--electric-blue);
+}
+
+.form-group textarea {
+    min-height: 250px;
+    resize: vertical;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #0050f7;
+    color: var(--soft-white);
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1rem;
+}
+
+.submit-button:hover {
+    background-color: var(--electric-blue);
+    box-shadow: 0 4px 15px rgba(0, 174, 239, 0.3);
+}
+
+.form-header {
+    margin-bottom: 40px; 
+}
+
+/* Increase size of the Title */
+.form-header h3 {
+    font-size: 2rem; /* You can change 2rem to 2.5rem or 3rem to make it bigger */
+}
+
+/* Increase size of the Description */
+.form-header p {
+    font-size: 1.1rem; /* You can change 1.1rem to 1.2rem or 1.3rem to make it bigger */
+}
+
+/* Styling for the success message */
+.hidden {
+    display: none;
+}
+
+#success-message {
+    text-align: center;
+    padding: 40px;
+    color: var(--soft-white);
+}
+
+/* --- PORTFOLIO PAGE --- */
+
+/* --- HERO SECTION --- */
+.portfolio-hero-img {
+    width: 400px !important; 
+    height: auto;
+    animation: float 6s ease-in-out infinite;
+    
+    /* Change your margin to this: */
+    position: relative;
+    right: -100px; /* Positive numbers move it left, negative moves it right */
+}
+
+/* Updating padding to match the CTA layout exactly */
+.portfolio-container {
+    max-width: 100%; /* Removing fixed max-width so it can fill the available space */
+    margin: 0 auto;
+    padding: 0 150px; /* Matching the 150px padding from the CTA container */
+}
+
+/* Styling for the Project Card container */
+.project-card {
+    width: 100%;
+    display: flex;
+    background: var(--midnight-blue);
+    padding: 50px;           /* Increased from 30px to 50px to create more breathing room inside */
+    border-radius: 12px;
+    gap: 50px;               /* Increased from 30px to 50px to push the image and text apart */
+    margin-bottom: 40px;
+    align-items: flex-start; /* Changed from 'center' to 'flex-start' so text stays anchored at the top */
+    border: 1px solid #1a2a3a;
+}
+
+/* Dividing the space between image and text */
+/* Limit the image container width */
+.project-image {
+    flex: 0 0 45%; /* This locks the image container to 30% of the total width */
+    max-width: 800px; /* This ensures it never gets wider than 350px */
+}
+
+/* 2. The New Modifier Rule (Makes your dashboard images bigger) */
+.project-image.image-wide {
+    flex: 0 0 45%; /* Makes the container 45% wide */
+    max-width: 800px; /* Allows the image to scale up beautifully */
+}
+
+/* 2. The New Modifier Rule (Makes your dashboard images bigger) */
+.project-image.image-wide-a {
+    flex: 0 0 45%; /* Makes the container 45% wide */
+    max-width: 800px; /* Allows the image to scale up beautifully */
+}
+
+.project-content {
+    flex: 2; /* Takes up 2 parts of the space (so text is wider than the image) */
+}
+
+/* Make sure the base image has a smooth transition */
+.project-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; 
+    border-radius: 8px;
+    transition: all 0.3s ease; /* <-- Add this line for a smooth bounce! */
+}
+
+/* The Hover Effect: Lift and Glow */
+.project-image a:hover img {
+    transform: translateY(-5px); /* Gives the image a gentle lift upward */
+    box-shadow: 0 10px 30px rgba(0, 80, 247, 0.15); /* A faint blue glow underneath, matching your service cards */
+}
+
+/* Style the Category Label */
+.project-category {
+    color: #0088c7; /* This is your electric blue */
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+/* 2. Project Title - larger and bolder */
+.project-content h3 {
+    font-size: 1.5rem; 
+    margin: 25px 0;
+    color: var(--soft-white);
+}
+
+/* 3. Description - bigger text and the "square" wrapper */
+/* Update the paragraph to force a 3-line wrap */
+.project-content p {
+    font-size: 1.3rem; 
+    line-height: 1.6;
+    margin-bottom: 25px; 
+    max-width: 1800px; /* Adjusting this width will force the text to wrap sooner */
+    color: var(--soft-white);
+}
+
+
+/* Organize the badges area into a row */
+.project-badges {
+    display: flex;
+    gap: 25px;               /* Adds generous spacing between the badges themselves */
+    padding-top: 25px;
+    flex-wrap: wrap;         /* This ensures if the screen gets smaller, badges wrap to a new line instead of squishing */
+    justify-content: flex-start; /* Keeps everything locked to the left side */
+}
+
+/* Style the individual badge items */
+.badge {
+    color: var(--soft-white);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Lock the size of the badge icons */
+.badge-icon {
+    width: 45px; /* This is the magic number! Adjust up or down as needed */
+    height: auto;
+    object-fit: contain; /* Keeps the icon from getting stretched or squished */
+}
+
+/* Style the Request Button */
+.project-btn {
+    display: inline-block;
+    margin-top: 35px; /* Adds space between the badges and the button */
+    padding: 15px 150px;
+    color: #0088c7; /* Matching your electric blue */
+    border: 1px solid #0088c7;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for the button */
+.project-btn:hover {
+    background-color: #0088c7;
+    color: white;
+}
+
+/* Force the project cards to stack vertically */
+.project-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* This creates the space between the stacked cards */
+    width: 100%;
+}
+
+
+
+/* --- MASSIVELY TEMPLATE MOBILE OVERRIDE --- */
+/* --- Mobile Fix for Portfolio --- */
+@media (max-width: 768px) {
+    /* 1. Reset the portfolio container padding */
+    .portfolio-container {
+        padding: 0 20px !important; /* Forces 20px padding instead of 150px */
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 2. Stack the project card elements */
+    .project-card {
+        flex-direction: column !important;
+        padding: 20px !important;
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    /* 3. Ensure the project image is full-width on mobile */
+    .project-image {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* 4. Ensure the content takes full width */
+    .project-content {
+        width: 100% !important;
+    }
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE FOUNDATION
+   Step 1: Global mobile layout fixes
+========================================================= */
+
+/* Prevent accidental horizontal scrolling */
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Make all images scale safely on small screens */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Tablet and mobile layout */
+@media (max-width: 900px) {
+
+    /* -------------------------
+       HEADER / NAVIGATION
+    ------------------------- */
+    .main-header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        padding: 20px 24px;
+        text-align: center;
+    }
+
+    .logo-img {
+        height: auto;
+        max-width: 260px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px 24px;
+        width: 100%;
+    }
+
+    .nav-links a {
+        font-size: 1rem;
+    }
+
+    .main-header .btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+
+    /* -------------------------
+       HERO SECTIONS
+    ------------------------- */
+    .hero {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: auto;
+        padding: 60px 24px 50px;
+        text-align: center;
+        gap: 32px;
+    }
+
+    .hero > div {
+        transform: none;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 680px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.4rem, 11vw, 4rem);
+        line-height: 1.05;
+        margin-bottom: 20px;
+    }
+
+    .description {
+        max-width: 100%;
+        font-size: 1.05rem;
+        margin: 0 auto 32px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-graphic {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    .hero-graphic img,
+    .contact-hero-img,
+    .portfolio-hero-img {
+        width: 100% !important;
+        max-width: 360px;
+        position: static;
+        right: auto;
+    }
+
+
+    /* -------------------------
+       TRUST BADGES
+    ------------------------- */
+    .trust-badges {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        margin-top: 35px;
+    }
+
+    .badge {
+        height: auto;
+        justify-content: center;
+        text-align: left;
+    }
+
+    .badge:not(:last-child) {
+        padding-right: 0;
+    }
+
+    .badge:not(:last-child)::after {
+        display: none;
+    }
+
+
+    /* -------------------------
+       SERVICES
+    ------------------------- */
+    .services-section,
+    .process-section,
+    .cta-section,
+    .site-footer {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .section-header {
+        text-align: center;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+
+    /* -------------------------
+       PROCESS SECTION
+    ------------------------- */
+    .process-container {
+        padding: 40px 24px;
+    }
+
+    .process-steps {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .step {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .step-arrow {
+        display: none;
+    }
+
+
+    /* -------------------------
+       CTA SECTION
+    ------------------------- */
+    .cta-container {
+        flex-direction: column;
+        padding: 40px 24px;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .cta-left {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .cta-text h2 {
+        font-size: 2rem;
+    }
+
+    .cta-text p {
+        font-size: 1.05rem;
+    }
+
+    .cta-button,
+    .cta-right .btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+        text-align: center;
+        padding: 16px 24px;
+    }
+
+
+    /* -------------------------
+       FOOTER
+    ------------------------- */
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 35px;
+    }
+
+    .footer-logo {
+        max-width: 300px;
+    }
+
+    .footer-brand p {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .footer-corner-graphic {
+        width: 420px;
+        opacity: 0.35;
+    }
+
+
+    /* -------------------------
+       CONTACT FORM
+    ------------------------- */
+    .contact-form-section {
+        padding: 20px 24px;
+    }
+
+    .form-container {
+        padding: 36px 24px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+
+    /* -------------------------
+       PORTFOLIO
+    ------------------------- */
+    .portfolio-container {
+        padding: 0 24px !important;
+    }
+
+    .project-card {
+        flex-direction: column !important;
+        padding: 28px 24px !important;
+        gap: 28px !important;
+    }
+
+    .project-image {
+        width: 100% !important;
+        flex: none !important;
+        max-width: 100% !important;
+    }
+
+    .project-content {
+        width: 100% !important;
+    }
+
+    .project-content p {
+        font-size: 1.05rem;
+    }
+
+    .project-badges {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .project-btn {
+        width: 100%;
+        text-align: center;
+        padding: 15px 20px;
+    }
+}
+
+
+/* Small phone layout */
+@media (max-width: 600px) {
+
+    .main-header {
+        padding: 18px 18px;
+    }
+
+    .logo-img {
+        max-width: 230px;
+    }
+
+    .nav-links {
+        gap: 12px 18px;
+    }
+
+    .nav-links a {
+        font-size: 0.95rem;
+    }
+
+    .hero {
+        padding: 45px 18px 40px;
+    }
+
+    .subtitle,
+    .section-subtitle {
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.2rem, 13vw, 3.4rem);
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        padding: 32px 24px;
+    }
+
+    .service-icon {
+        height: 120px;
+    }
+
+    .cta-text h2 {
+        font-size: 1.75rem;
+    }
+
+    .form-header h3 {
+        font-size: 1.6rem;
+    }
+
+    .form-header p {
+        font-size: 1rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.35rem;
+    }
+
+    .footer-logo {
+        max-width: 260px;
+    }
+}
+
+/* =========================================================
+   PORTFOLIO BADGE MOBILE ALIGNMENT FIX
+   Keeps portfolio badge icons and text evenly aligned on mobile
+========================================================= */
+
+@media (max-width: 900px) {
+    .project-badges {
+        align-items: center;
+        width: 100%;
+    }
+
+    .project-badges .badge {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        align-items: center;
+        column-gap: 16px;
+        width: 100%;
+        max-width: 340px;
+        height: auto;
+        text-align: left;
+    }
+
+    .project-badges .badge-icon {
+        width: 44px;
+        height: 44px;
+        object-fit: contain;
+        justify-self: center;
+    }
+}
