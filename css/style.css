@@ -1308,3 +1308,37 @@ img {
         justify-self: center;
     }
 }
+
+/* =========================================================
+   LANDING PAGE TRUST BADGE MOBILE ALIGNMENT FIX
+   Keeps trust badge icons and text evenly aligned on mobile
+========================================================= */
+
+@media (max-width: 900px) {
+    .trust-badges {
+        align-items: center;
+        width: 100%;
+    }
+
+    .trust-badges .badge {
+        display: grid;
+        grid-template-columns: 64px 1fr;
+        align-items: center;
+        column-gap: 18px;
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+        text-align: left;
+    }
+
+    .trust-badges .badge img {
+        width: 56px;
+        height: 56px;
+        object-fit: contain;
+        justify-self: center;
+    }
+
+    .trust-badges .badge span {
+        text-align: left;
+    }
+}
